@@ -1,11 +1,13 @@
 package com.programcreek.helloworld.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.programcreek.helloworld.service.MemberService;
 import com.programcreek.helloworld.model.Member;
 
+@Controller
 public class HelloController {
 	@Autowired
 	private MemberService memberService;
