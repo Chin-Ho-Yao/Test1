@@ -8,9 +8,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Test1 Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+<!--  這是幹嘛的Ｑ1-->
 
 	<properties>
-		<spring.version>4.3.2.RELEASE</spring.version>
+		<spring.version>4.3.2.RELEASE</spring.version><!-- 把下面要寫version的地方全部移上來寫 -->
 		<hibernate.version>5.2.10.Final</hibernate.version>
 	</properties>
 
@@ -44,8 +45,9 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
+			<version>${spring.version}</version><!-- 這邊是把version移到14行統一撰寫 -->
 		</dependency>
+		
 		<!-- spring jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -87,16 +89,18 @@
 	<build>
 		<finalName>Test1</finalName>
 
+<!-- 以上dependency透過下方插件build到Maven Dependencies -->
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
+				<groupId>org.apache.maven.plugins</groupId><!--  -->
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>3.5.1</version><!-- Servlet 3.1-->
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>1.8</source><!-- source compile Java version -->
+					<target>1.8</target><!-- target compile Java version -->
 				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+			</plugin><!-- 插件 -->
+			
+		</plugins><!-- 插件組 -->
+	</build><!-- 建構裡面的組件 -->
 </project>
