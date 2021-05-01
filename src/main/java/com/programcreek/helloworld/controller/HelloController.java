@@ -1,8 +1,11 @@
 package com.programcreek.helloworld.controller;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.programcreek.helloworld.service.MemberService;
 import com.programcreek.helloworld.model.Member;
@@ -13,14 +16,20 @@ public class HelloController {
 	private MemberService memberService;
 
 	@RequestMapping(value = "/helloHibernate")
-	public String hello() {
+	public ModelAndView hello() {
 		System.out.println("helloHibernate");
 
 		Member member = memberService.getMember(1);
 
-		System.out.println(member.getMemberName());
-		System.out.println(member.getRegisterTime());
+		
+		String MemberName = member.getMemberName();
+		Date RegisterTime = member.getRegisterTime();
+		System.out.println(MemberName);
+		System.out.println(RegisterTime);
 
-		return "helloHibernate";
+		ModelAndView mv = new ModelAndView("helloHibernate");
+		mv.addObject("MemberName", MemberName);
+		mv.addObject("RegisterTime", RegisterTime);
+		return mv;
 	}
 }

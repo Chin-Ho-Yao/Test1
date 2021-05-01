@@ -7,6 +7,7 @@
 <title>helloHibernate</title>
 </head>
 <body>
-<h1>helloHibernate</h1>
+<h1>MemberName is ${MemberName}</h1>
+<h1>RegisterTime is ${RegisterTime}</h1>
 </body>
 </html>
