@@ -17,9 +17,9 @@ public class HelloController {
 
 	@RequestMapping(value = "/helloHibernate")
 	public ModelAndView hello() {
-		System.out.println("helloHibernate");
+		System.out.println("helloHibernate(From HelloController.java)");
 
-		Member member = memberService.getMember(1);
+		Member member = memberService.getMember(2);
 
 		
 		String MemberName = member.getMemberName();
@@ -27,7 +27,25 @@ public class HelloController {
 		System.out.println(MemberName);
 		System.out.println(RegisterTime);
 
-		ModelAndView mv = new ModelAndView("helloHibernate");
+		ModelAndView mv = new ModelAndView("helloHibernate");//這邊回到views的helloHibernate.jsp
+		mv.addObject("MemberName", MemberName);
+		mv.addObject("RegisterTime", RegisterTime);
+		return mv;
+	}
+	
+	@RequestMapping(value = "/createMember")
+	public ModelAndView createMember() {
+		System.out.println("helloHibernate(From HelloController.java)");
+		
+		Member member = memberService.getMember(2);
+		
+		
+		String MemberName = member.getMemberName();
+		Date RegisterTime = member.getRegisterTime();
+		System.out.println(MemberName);
+		System.out.println(RegisterTime);
+		
+		ModelAndView mv = new ModelAndView("helloHibernate");//這邊回到views的helloHibernate.jsp
 		mv.addObject("MemberName", MemberName);
 		mv.addObject("RegisterTime", RegisterTime);
 		return mv;

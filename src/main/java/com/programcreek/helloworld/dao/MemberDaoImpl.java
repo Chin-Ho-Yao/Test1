@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.programcreek.helloworld.model.Member;
 
+
 @Repository("memberDao")
 public class MemberDaoImpl implements MemberDao {
 

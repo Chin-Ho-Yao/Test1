@@ -100,4 +100,5 @@ public class Member {
 		this.updateTime = updateTime;
 	}
 
+
 }

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Q連結MYSQL的固定開頭？ -->
+<!-- 這是連資料庫的沒有連線就用不到 -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -17,8 +19,9 @@
                            http://www.springframework.org/schema/mvc 
                            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-  <mvc:annotation-driven />
+  <mvc:annotation-driven /><!-- 單一頭尾沒內容 -->
   <context:annotation-config/>
+  <!-- 下面scan完這樣可以調用以下的包 -->
   <context:component-scan 
               base-package="com.programcreek.helloworld.controller, 
                             com.programcreek.helloworld.service,
@@ -29,21 +32,24 @@
   
   <!-- MySQL dataSource config -->
   <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+  <!-- MySQL版本為8 -->
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+    
+    <!-- MVC4Hibernate5 DB -->
     <property name="url" value="jdbc:mysql://localhost:3306/MVC4Hibernate5?useSSL=false&amp;serverTimezone=UTC&amp;characterEncoding=utf-8" />
-    <property name="username" value="root" />
+    <property name="username" value="root" /><!-- MYSQL帳號密碼 -->
     <property name="password" value="111111" />
   </bean>
-  
+  <!-- 以下固定？？ -->
   <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
     <property name="dataSource" ref="dataSource"/>
-    <property name="packagesToScan" value="com.programcreek.helloworld.model"/>
+    <property name="packagesToScan" value="com.programcreek.helloworld.model"/><!-- 在這package下面找 -->
     <property name="hibernateProperties">
       <props>
         <prop key="hibernate.dialect">
           org.hibernate.dialect.MySQLDialect
         </prop>
-        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.show_sql">true</prop> <!-- 這邊true就會console跑出Hibernate:那串文字通常是偵錯用 -->
       </props>
     </property>
   </bean>
