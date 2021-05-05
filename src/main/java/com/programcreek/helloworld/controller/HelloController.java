@@ -47,7 +47,8 @@ public class HelloController {
 	public String createMember(HttpServletRequest request, @RequestBody String receiveJSONString) {
 		System.out.println("createMember(From HelloController.java)");
 		String resultString = null;
-		
+		System.out.println(receiveJSONString);
+
 		//轉換收到的request
 		JSONObject receiveJsonObject = new JSONObject(receiveJSONString);
 		Integer memberId = receiveJsonObject.optInt("member_id");
@@ -70,7 +71,38 @@ public class HelloController {
 
 		Member memberResult = memberService.createMember(member);
 		resultString = this.writeValueAsString(memberResult);
+		System.out.println(resultString);
+		return resultString;
+	}
+	
+	@RequestMapping(value = "/updateMember",method = {
+			RequestMethod.POST }, produces = "application/json;charset=utf-8", consumes = "application/json;charset=utf-8")
+	public String updateMember(HttpServletRequest request, @RequestBody String receiveJSONString) {
+		System.out.println("updateMember(From HelloController.java)");
+		String resultString = null;
 		System.out.println(receiveJSONString);
+
+		//轉換收到的request
+		JSONObject receiveJsonObject = new JSONObject(receiveJSONString);
+
+		Member memberResult = memberService.updateMember(receiveJsonObject);
+		resultString = this.writeValueAsString(memberResult);
+		System.out.println(resultString);
+		return resultString;
+	}
+	
+	@RequestMapping(value = "/deleteMember",method = {
+			RequestMethod.POST }, produces = "application/json;charset=utf-8", consumes = "application/json;charset=utf-8")
+	public String deleteMember(HttpServletRequest request, @RequestBody String receiveJSONString) {
+		System.out.println("deleteMember(From HelloController.java)");
+		String resultString = null;
+		System.out.println(receiveJSONString);
+		
+		//轉換收到的request
+		JSONObject receiveJsonObject = new JSONObject(receiveJSONString);
+		Integer memberId = receiveJsonObject.optInt("member_id");
+		
+		memberService.deleteMember(memberId);
 		return resultString;
 	}
 	

@@ -21,5 +21,11 @@ public class MemberDaoImpl implements MemberDao {
 	public void createMember(Member member) {
 		sessionFactory.getCurrentSession().persist(member);
 	}
+	
+	@Override
+	public void deleteMember(Member member) {
+
+		sessionFactory.getCurrentSession().delete(member);
+	}
 
 }

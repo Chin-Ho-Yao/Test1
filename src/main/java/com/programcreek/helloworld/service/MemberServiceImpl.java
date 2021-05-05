@@ -1,5 +1,9 @@
 package com.programcreek.helloworld.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +29,32 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.createMember(member);
 		Member memberResult = this.getMember(member.getMemberId());
 		return memberResult;
+	}
+
+	@Override
+	public Member updateMember(JSONObject receiveJsonObject) {
+		
+		Integer memberId = receiveJsonObject.optInt("member_id");
+		String memberEmail = receiveJsonObject.optString("member_email");
+		String memberName = receiveJsonObject.optString("member_name");
+		String password = receiveJsonObject.optString("password");
+		
+		Member dbMember = memberDao.getMember(memberId);
+		
+		//將轉換的request 塞入新增的model
+		dbMember.setMemberId(memberId);
+		dbMember.setMemberName(memberName);
+		dbMember.setMemberEmail(memberEmail);
+		dbMember.setPassword(password);
+		Timestamp timeStampDate = new Timestamp(new Date().getTime());
+		dbMember.setUpdateTime(timeStampDate);
+		return dbMember;
+	}
+
+	@Override
+	public void deleteMember(Integer memberId) {
+		Member member = this.getMember(memberId);
+		memberDao.deleteMember(member);
 	}
 
 }

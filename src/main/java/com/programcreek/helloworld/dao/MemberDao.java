@@ -9,4 +9,6 @@ public interface MemberDao {
 
 	void createMember(Member member);
 
+	void deleteMember(Member member);
+
 }
